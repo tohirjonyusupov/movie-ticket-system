@@ -2,6 +2,8 @@ require('dotenv').config();
 const { pool } = require('./db');
 
 const SQL = `
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- ─── Enums ──────────────────────────────────────────────────────────────────
 DO $$ BEGIN
   CREATE TYPE seat_type    AS ENUM ('STANDARD','PREMIUM','VIP','WHEELCHAIR');
@@ -125,6 +127,9 @@ CREATE TRIGGER set_booking_updated_at
     process.exit(0);
   } catch (err) {
     console.error('❌  Migration xatoligi:', err.message);
+    if (err.code === '28P01') {
+      console.error('PostgreSQL login/parol xato. .env faylidagi SUPABASE_DB_URL yoki DB_USER/DB_PASSWORD qiymatlarini tekshiring.');
+    }
     process.exit(1);
   }
 })();
