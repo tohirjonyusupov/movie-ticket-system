@@ -102,3 +102,7 @@ module.exports = {
   getSeatMap, createBooking, initiatePayment,
   paymentCallback, cancelBooking, getBookingDetail, getUserBookings,
 };
+
+function test(){
+  
+}
