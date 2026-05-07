@@ -12,6 +12,7 @@ app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(',') || '*' }));
 
 // ─── Rate limiting ────────────────────────────────────────────────────────────
+// Bu rate limitingni kodi
 app.use('/api', rateLimit({
   windowMs: 60 * 1000,  // 1 daqiqa
   max: 60,
