@@ -21,7 +21,7 @@ const pool = new Pool({
   ...poolConfig,
   max: parseInt(process.env.DB_POOL_MAX) || 10,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 5000,
+  connectionTimeoutMillis: parseInt(process.env.DB_CONNECTION_TIMEOUT_MS, 10) || 10000,
 });
 
 pool.on('error', (err) => {
